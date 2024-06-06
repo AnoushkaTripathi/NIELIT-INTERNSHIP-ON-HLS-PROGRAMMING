@@ -72,3 +72,24 @@ Computing Structure of CPU
 
  ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/94d34fb8-d4d1-4c61-981d-2115e2bf1e1f)
 
+## FPGA Application Layer and Configuration Layer
+
+In FPGA (Field-Programmable Gate Array) design, understanding the application layer and configuration layer is essential. Let's explore these layers:
+
+## 1. Application Layer
+
+- **Purpose:**
+  - The application layer represents the top-level functionality implemented on the FPGA.
+  - It includes user-defined logic, custom IP cores, and specific algorithms.
+  - Designers create and program this layer to perform specific tasks or computations.
+
+## 2. Configuration Layer
+
+- **Purpose:**
+  - The configuration layer handles the initial setup of the FPGA.
+  - It involves loading the configuration data into the FPGA's memory elements (such as SRAM cells or flash memory).
+  - The configuration layer determines how the FPGA behaves during operation.
+
+An LUT (LookUp Table) in FPGA design is a fundamental building block. It can implement any Boolean function of N input variables. Essentially, an LUT acts as a truth table, defining how your combinatorial logic behaves. When an FPGA is configured, it fills in the LUT with output values, which are stored in SRAM bits. The same physical LUT can implement different logic functions by changing the LUT-Mask (the truth table). Think of LUTs as memory, where inputs serve as addresses, and outputs are the data stored in those addresses
+
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/ead615e2-0ece-4001-8a89-66fe0264d99e)
