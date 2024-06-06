@@ -46,9 +46,29 @@ FPGA Vs CPU
 | FPGA | CPU | 
 |----------|----------|
 | Computing platform with no predefined hardware architecture,each C/C++ program we create have it's own optimized hardware architecture| CPUs are computing platform with fixed hardware architecture, generic to perform any logical algorithmic function as long as it is compiled into CPU instructions| 
-
+|  Translate C functions into hardware block,that is why it can perform operations in parallel   | In CPU compiler translate c function to assembly language,sequential execution|
+| Parallelism | Sequential execution |
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/509b3a9f-effb-441f-800f-6f88dfb3f8c3)
 
 
 Computing Structure of CPU
 
  ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/94d767fb-62ff-4c1e-879d-7487481757c5)
+
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/def5c085-0ed6-4c28-aa13-5a3cb9b76983)
+
+**FPGA computing structure**
+
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/f39c0553-7a34-4c7a-9722-cee2f2a8b368)
+
+
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/dd550fd3-7415-408b-b4e9-c9c3ec0af5fd)
+ 
+ GPU also performs parallelism , but every application is not suitable for GPU
+
+ # FPGA BASICS
+
+ **FPGA Structure**
+
+ ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/94d34fb8-d4d1-4c61-981d-2115e2bf1e1f)
+
