@@ -117,3 +117,9 @@ An LUT (LookUp Table) in FPGA design is a fundamental building block. It can imp
 
 ![Screenshot 2024-06-30 112316](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/d6cb09fc-11d1-4ffd-a39d-89a75af78a4f)
 
+
+
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/6294f38a-b210-4653-bd6f-f51d5eb99f74)
+
+
+
