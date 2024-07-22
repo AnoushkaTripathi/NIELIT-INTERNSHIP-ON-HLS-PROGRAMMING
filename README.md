@@ -9,10 +9,10 @@
 - In-system Hardware-debugging of the post-implemented design
 - Case studies and projects using HLS Programming
 
-# Outcome of the Course
-After successful completion of the module, the students shall be able
-- Create their own IP and SoC design for FPGA implementation
-- Develop their own software application with Zynq APSoC
+# Outcome of the Internship
+After successful completion of the module, the I learnt to
+- Create my own IP and SoC design for FPGA implementation
+- Develop my own software application with Zynq APSoC
 
 <details>
 
