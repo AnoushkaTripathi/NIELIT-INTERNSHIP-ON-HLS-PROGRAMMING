@@ -573,6 +573,257 @@ This flowchart outlines the steps involved in computer engineering design. Here�
 # HUFFMAN ENCODING
 
   huffman-encoding-core
+
+  ![image](https://github.com/user-attachments/assets/6847cf6c-1f94-4a0d-a32c-8cf56359edab)
+
+  Here's a more detailed and elaborate documentation for the Canonical Huffman Encoding project in GitHub Markdown format:
+
+---
+
+# Canonical Huffman Encoding Project
+
+## Overview
+
+The Canonical Huffman Encoding project involves designing, simulating, and evaluating a hardware accelerator for Huffman encoding using High-Level Synthesis (HLS) tools. The primary goal is to implement a Canonical Huffman code, which is a variant of Huffman coding where the codes are ordered in a way that minimizes storage requirements and simplifies the encoding and decoding processes.
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Prerequisites](#prerequisites)
+3. [Project Structure](#project-structure)
+4. [Modules and Functions](#modules-and-functions)
+    - [Histogram Calculation](#histogram-calculation)
+    - [Tree Construction](#tree-construction)
+    - [Tree Truncation](#tree-truncation)
+    - [Create Codeword](#create-codeword)
+    - [Testbench](#testbench)
+5. [Usage](#usage)
+6. [Example](#example)
+7. [References](#references)
+
+## Introduction
+
+Canonical Huffman codes are a variant of Huffman codes with specific properties that make them easier to store and manipulate. This project implements a Canonical Huffman encoding process in hardware using HLS tools. The project includes several stages, from histogram calculation to tree truncation and codeword assignment.
+
+## Prerequisites
+
+- Vivado HLS or similar HLS tools
+- Basic understanding of Huffman encoding
+- Familiarity with C/C++ programming
+- Basic knowledge of FPGA design and Verilog
+
+## Project Structure
+
+```
+.
+├── src
+│   ├── huffman.h
+│   ├── huffman.cpp
+│   ├── create_codeword.cpp
+│   └── testbench.cpp
+├── data
+│   ├── huffman.random256.txt
+│   └── huffman.random256.gold
+└── README.md
+```
+
+- `src`: Contains the source code for the Huffman encoding project.
+- `data`: Contains the input frequency data and the golden reference output.
+
+## Modules and Functions
+
+### Histogram Calculation
+
+This module calculates the histogram of symbol frequencies from the input data. The histogram is used to build the Huffman tree.
+
+**Code Snippet:**
+```cpp
+void calculate_histogram(const int* frequencies, int* histogram) {
+    for (int i = 0; i < INPUT_SYMBOL_SIZE; ++i) {
+        histogram[frequencies[i]]++;
+    }
+}
+```
+
+### Tree Construction
+
+This module constructs the Huffman tree based on the symbol frequencies. It uses a priority queue to ensure that the tree is built correctly.
+
+**Code Snippet:**
+```cpp
+HuffmanTree construct_tree(const int* histogram) {
+    std::priority_queue<HuffmanNode, std::vector<HuffmanNode>, Compare> pq;
+    for (int i = 0; i < INPUT_SYMBOL_SIZE; ++i) {
+        if (histogram[i] > 0) {
+            pq.push(HuffmanNode(i, histogram[i]));
+        }
+    }
+
+    while (pq.size() > 1) {
+        HuffmanNode left = pq.top(); pq.pop();
+        HuffmanNode right = pq.top(); pq.pop();
+        HuffmanNode parent(left, right);
+        pq.push(parent);
+    }
+
+    return pq.top();
+}
+```
+
+### Tree Truncation
+
+This module truncates the Huffman tree to a maximum codeword length. This step is necessary to ensure that the codewords fit within the desired bit-width.
+
+**Code Snippet:**
+```cpp
+void truncate_tree(HuffmanTree& tree, int max_length) {
+    // Truncation logic here
+}
+```
+
+### Create Codeword
+
+The final step in the encoding process is to create the codeword for each symbol. This process assigns each symbol in order according to the properties of a Canonical Huffman code.
+
+#### Process Description:
+
+1. **First Codeword Calculation:** 
+   - Determine the first codeword for each length using the codeword length histogram.
+   - Formula:
+     ```cpp
+     first_codeword[1] = 0;
+     for(int i = 2; i <= MAX_CODEWORD_LENGTH; ++i) {
+         first_codeword[i] = (first_codeword[i - 1] + codeword_length_histogram[i - 1]) << 1;
+     }
+     ```
+
+2. **Assigning Codewords:**
+   - Assign codewords to symbols and format them for encoding and decoding.
+   - Store codewords in bit-reversed order for easier decoding.
+
+**Code Snippet:**
+```cpp
+void create_codeword(
+    const CodewordLength symbol_bits[INPUT_SYMBOL_SIZE],
+    const ap_uint<SYMBOL_BITS> codeword_length_histogram[TREE_DEPTH],
+    PackedCodewordAndLength encoding[INPUT_SYMBOL_SIZE]
+) {
+    Codeword first_codeword[MAX_CODEWORD_LENGTH];
+    first_codeword[0] = 0;
+    for (int i = 1; i < MAX_CODEWORD_LENGTH; ++i) {
+        first_codeword[i] = (first_codeword[i - 1] + codeword_length_histogram[i - 1]) << 1;
+    }
+
+    for (int i = 0; i < INPUT_SYMBOL_SIZE; ++i) {
+        CodewordLength length = symbol_bits[i];
+        if (length != 0) {
+            Codeword out_reversed = first_codeword[length];
+            out_reversed.reverse();
+            out_reversed >>= (MAX_CODEWORD_LENGTH - length);
+            encoding[i] = (out_reversed << CODEWORD_LENGTH_BITS) + length;
+            first_codeword[length]++;
+        } else {
+            encoding[i] = 0;
+        }
+    }
+}
+```
+
+### Testbench
+
+The final part of the code is the testbench. It reads the input frequency values from a file, processes them using the Huffman encoding function, and compares the resulting codewords with an existing golden reference stored in a file.
+
+**Code Snippet:**
+```cpp
+int main() {
+    ap_uint<16> *frequencies = NULL;
+    file_to_array("data/huffman.random256.txt", frequencies, INPUT_SYMBOL_SIZE);
+
+    Symbol in[INPUT_SYMBOL_SIZE];
+    for (int i = 0; i < INPUT_SYMBOL_SIZE; ++i) {
+        in[i].frequency = frequencies[i];
+        in[i].value = i;
+    }
+
+    PackedCodewordAndLength encoding[INPUT_SYMBOL_SIZE];
+    int num_nonzero_symbols;
+    huffman_encoding(in, encoding, &num_nonzero_symbols);
+
+    FILE* output_file = fopen("data/huffman.random256.out", "w");
+    for (int i = 0; i < INPUT_SYMBOL_SIZE; ++i) {
+        fprintf(output_file, "%d, %x\n", i, (unsigned int)encoding[i]);
+    }
+    fclose(output_file);
+
+    if (system("diff data/huffman.random256.out data/huffman.random256.gold")) {
+        printf("FAIL: Output DOES NOT match the golden output\n");
+        return 1;
+    } else {
+        printf("PASS: The output matches the golden output\n");
+        return 0;
+    }
+}
+```
+
+## Usage
+
+1. **Clone the Repository**
+
+    ```bash
+    git clone https://github.com/yourusername/huffman-encoding.git
+    cd huffman-encoding
+    ```
+
+2. **Compile the Project**
+
+    Use Vivado HLS or your preferred HLS tool to compile the project.
+
+3. **Run the Testbench**
+
+    Execute the testbench to verify the implementation.
+
+## Example
+
+Here is a brief example of how to use the Canonical Huffman Encoding functions.
+
+```cpp
+#include "huffman.h"
+
+int main() {
+    // Define input frequencies
+    int frequencies[256] = { /* ... */ };
+
+    // Calculate histogram
+    int histogram[256];
+    calculate_histogram(frequencies, histogram);
+
+    // Construct Huffman tree
+    HuffmanTree tree = construct_tree(histogram);
+
+    // Truncate the tree
+    truncate_tree(tree, MAX_CODEWORD_LENGTH);
+
+    // Assign codewords
+    Codeword codewords[256];
+    assign_codewords(tree, codewords);
+
+    // Verify results
+    verify_codewords(codewords, "data/huffman.random256.gold");
+
+    return 0;
+}
+```
+
+## References
+
+- [Huffman Coding](https://en.wikipedia.org/wiki/Huffman_coding)
+- [Canonical Huffman Code](https://en.wikipedia.org/wiki/Canonical_Huffman_code)
+- [Vivado HLS Documentation](https://www.xilinx.com/products/design-tools/vivado.html)
+
+---
+
+Feel free to adjust the paths, function names, and other details as per your actual implementation. This documentation provides a comprehensive guide to understanding and using the Canonical Huffman Encoding project.
+
   
 ![image](https://github.com/user-attachments/assets/e1074bd7-1a4d-4123-a4dd-7dfb1ef2576f)
 
