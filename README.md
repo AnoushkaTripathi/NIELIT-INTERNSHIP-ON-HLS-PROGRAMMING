@@ -303,11 +303,80 @@ High-Level Synthesis (HLS) involves two main tasks:
    - **Considerations**: Bandwidth, throughput, and protocol adherence.
 
 
+# DAY 2
+
+![image](https://github.com/user-attachments/assets/14173de3-a512-4384-9fb4-fa6340f73bfb)
+
+# Design Flow in Vivado HLS
+
+## Overview
+
+The design flow in Vivado HLS allows you to create custom hardware accelerators from high-level C/C++ code. This process simplifies FPGA (Field-Programmable Gate Array) development by abstracting low-level details. Here’s how it works:
+
+### 1. Coding Functionality
+- Write your algorithm or functionality in C/C++.
+- This high-level code will serve as the basis for your hardware design.
+
+### 2. C-Simulation (Optional)
+- Simulate your C/C++ code to verify correctness.
+- Use test vectors to ensure expected behavior.
+
+### 3. C/RTL Co-Simulation (Optional)
+- Co-simulate the C/C++ code with RTL (Register Transfer Level) code.
+- Validate consistency between the high-level and low-level representations.
+
+### 4. Synthesis
+- Transform your C/C++ code into RTL.
+- Vivado HLS generates hardware components (datapaths, controllers, etc.).
+
+### 5. Co-Simulation (Optional)
+- Verify the synthesized RTL against the original C/C++ code.
+- Ensure functional equivalence.
+
+### 6. IP Generation
+- Export the generated IP (Intellectual Property) for use in Vivado Design Suite.
+- Integrate the custom IP into your FPGA project.
+
+  # Hardware Design and Software Programming Analogy
+
+
+![image](https://github.com/user-attachments/assets/5c3c1603-1870-455b-8f35-c8fb84654486)
+
+
+### Hardware Design
+- **Inputs**: Analogous to call-by-value arguments in software programming.
+- **Outputs**: Analogous to function returns and call-by-reference arguments in software programming.
+- **Inouts**: Inputs/outputs (inout) in hardware design correspond to call-by-reference arguments in software programming.
+- **Design**: The hardware design itself is analogous to the function body in software programming.
+
+### Software Programming
+The software side of the analogy explains how arguments and return values are handled in a function:
+- **Call by Value**: Arguments passed by value, meaning a copy of the value is passed.
+- **Call by Reference**: Arguments passed by reference, allowing the function to modify the variable.
+- **Function Return**: The value that the function returns after execution.
+
+### Example Code
+The example code provided in the diagram demonstrates a function that performs an addition operation using both call-by-value and call-by-reference arguments:
+
+```cpp
+int add (int a, int *b, int &c) {
+    int d;
+    d = a + *b + c;
+    return d;
+}
+```
+
+![image](https://github.com/user-attachments/assets/cfc54597-0787-41e6-a24b-99051f978498)
+
+
+
+
 </details>
 
 <details>
 
 <summary> WEEK 1 - LABS </summary>
+
 ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/e07e5535-fd47-4664-bf6f-9d3208b19945)
 
 
