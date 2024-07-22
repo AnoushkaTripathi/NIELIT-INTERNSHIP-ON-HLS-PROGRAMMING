@@ -10,7 +10,7 @@
 - Case studies and projects using HLS Programming
 
 # Outcome of the Internship
-After successful completion of the module, the I learnt to
+After successful completion of this Internship, the I learnt to
 - Create my own IP and SoC design for FPGA implementation
 - Develop my own software application with Zynq APSoC
 
