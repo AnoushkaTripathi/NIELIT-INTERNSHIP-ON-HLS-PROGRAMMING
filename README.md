@@ -2,6 +2,17 @@
 
 # NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING
 
+## Objective of this Internship
+
+- Provide theoretical concepts of High-Level Synthesis (HLS)
+- Provide a comprehensive understanding of HLS design flow for FPGAs
+- In-system Hardware-debugging of the post-implemented design
+- Case studies and projects using HLS Programming
+
+# Outcome of the Course
+After successful completion of the module, the students shall be able
+- Create their own IP and SoC design for FPGA implementation
+- Develop their own software application with Zynq APSoC
 
 <details>
 
