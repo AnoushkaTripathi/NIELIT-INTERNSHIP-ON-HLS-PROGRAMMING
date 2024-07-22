@@ -817,12 +817,12 @@ int main() {
 ## References
 
 - [Huffman Coding](https://en.wikipedia.org/wiki/Huffman_coding)
-- [Canonical Huffman Code](https://en.wikipedia.org/wiki/Canonical_Huffman_code)
+- [pp4fpga](https://pp4fpgas.readthedocs.io/en/latest/)
 - [Vivado HLS Documentation](https://www.xilinx.com/products/design-tools/vivado.html)
 
 ---
 
-Feel free to adjust the paths, function names, and other details as per your actual implementation. This documentation provides a comprehensive guide to understanding and using the Canonical Huffman Encoding project.
+
 
   
 ![image](https://github.com/user-attachments/assets/e1074bd7-1a4d-4123-a4dd-7dfb1ef2576f)
