@@ -305,12 +305,9 @@ High-Level Synthesis (HLS) involves two main tasks:
 
 </details>
 
-## Capstone Project
-# HUFFMAN ENCODING
-  huffman-encoding-core
-![image](https://github.com/user-attachments/assets/e1074bd7-1a4d-4123-a4dd-7dfb1ef2576f)
+<details>
 
-
+<summary> WEEK 1 - LABS </summary>
 ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/e07e5535-fd47-4664-bf6f-9d3208b19945)
 
 
@@ -339,4 +336,14 @@ High-Level Synthesis (HLS) involves two main tasks:
 ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/6294f38a-b210-4653-bd6f-f51d5eb99f74)
 
 
+
+</details>
+
+## Capstone Project
+
+# HUFFMAN ENCODING
+
+  huffman-encoding-core
+  
+![image](https://github.com/user-attachments/assets/e1074bd7-1a4d-4123-a4dd-7dfb1ef2576f)
 
