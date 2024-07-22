@@ -633,6 +633,17 @@ Canonical Huffman codes are a variant of Huffman codes with specific properties 
 
 ### Histogram Calculation
 
+
+This module calculates the histogram of symbol frequencies from the input data. The histogram is used to build the Huffman tree.
+
+Detailed Description:
+
+
+The histogram calculation step involves reading the input data and counting the occurrences of each symbol. This frequency count is essential for constructing the Huffman tree, as it determines the weights of the tree nodes.
+
+- Input: An array of symbol frequencies.
+- Output: A histogram array where each index represents a symbol, and the value at that index represents the frequency of that symbol.
+
 ![image](https://github.com/user-attachments/assets/3478417f-a8f4-40d2-ace6-7af8c87dc52e)
 
 
@@ -649,7 +660,23 @@ void calculate_histogram(const int* frequencies, int* histogram) {
 
 ### Tree Construction
 
+
 This module constructs the Huffman tree based on the symbol frequencies. It uses a priority queue to ensure that the tree is built correctly.
+
+
+The Huffman tree construction involves creating a binary tree where each leaf node represents a symbol, and the path from the root to the leaf determines the symbol's codeword. The priority queue is used to build the tree efficiently, ensuring that nodes with lower frequencies are combined first.
+
+Input: A histogram array of symbol frequencies.
+
+
+Output: A Huffman tree where each node contains a symbol and its frequency.
+
+
+Steps:
+
+Initialize a priority queue and insert all non-zero frequency symbols as leaf nodes.
+Extract the two nodes with the smallest frequencies from the queue, combine them into a new node, and insert the new node back into the queue.
+Repeat until there is only one node left in the queue, which will be the root of the Huffman tree.
 
 **Code Snippet:**
 ```cpp
@@ -673,7 +700,6 @@ HuffmanTree construct_tree(const int* histogram) {
 ```
 
 ### Tree Truncation
-
 This module truncates the Huffman tree to a maximum codeword length. This step is necessary to ensure that the codewords fit within the desired bit-width.
 
 **Code Snippet:**
