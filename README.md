@@ -576,7 +576,6 @@ This flowchart outlines the steps involved in computer engineering design. Hereâ
 
   ![image](https://github.com/user-attachments/assets/6847cf6c-1f94-4a0d-a32c-8cf56359edab)
 
-  Here's a more detailed and elaborate documentation for the Canonical Huffman Encoding project in GitHub Markdown format:
 
 ---
 
@@ -633,6 +632,9 @@ Canonical Huffman codes are a variant of Huffman codes with specific properties 
 ## Modules and Functions
 
 ### Histogram Calculation
+
+![image](https://github.com/user-attachments/assets/3478417f-a8f4-40d2-ace6-7af8c87dc52e)
+
 
 This module calculates the histogram of symbol frequencies from the input data. The histogram is used to build the Huffman tree.
 
