@@ -2,6 +2,11 @@
 
 # NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING
 
+
+<details>
+
+<summary> WEEK 1</summary>
+
 # DAY 1 - Introduction to HLS programming
 
 ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/b5400a7f-5283-4e22-9c73-81e22c7296dc)
@@ -16,9 +21,6 @@ FPGA Design Approach
 
 
 ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/706199ab-8905-46f1-9912-0f3f69819e73)
-
-
-
 
 
 
@@ -89,15 +91,155 @@ In FPGA (Field-Programmable Gate Array) design, understanding the application la
   - The configuration layer handles the initial setup of the FPGA.
   - It involves loading the configuration data into the FPGA's memory elements (such as SRAM cells or flash memory).
   - The configuration layer determines how the FPGA behaves during operation.
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/ead615e2-0ece-4001-8a89-66fe0264d99e)
 
 An LUT (LookUp Table) in FPGA design is a fundamental building block. It can implement any Boolean function of N input variables. Essentially, an LUT acts as a truth table, defining how your combinatorial logic behaves. When an FPGA is configured, it fills in the LUT with output values, which are stored in SRAM bits. The same physical LUT can implement different logic functions by changing the LUT-Mask (the truth table). Think of LUTs as memory, where inputs serve as addresses, and outputs are the data stored in those addresses
+
+# FPGA Design Flow and Basic Elements
+
+## FPGA Design Flow
+
+The FPGA (Field-Programmable Gate Array) design flow involves several critical steps to ensure the successful implementation of digital circuits. Below is an overview of the typical stages:
+
+1. **Specification**: Define the requirements and functionality of the design.
+2. **Design Entry**: Create the design using hardware description languages (HDL) such as VHDL or Verilog, or through schematic entry.
+3. **Synthesis**: Convert the HDL code into a gate-level netlist.
+4. **Implementation**: Map, place, and route the netlist onto the FPGA fabric. This involves:
+   - **Mapping**: Assign logic to specific resources.
+   - **Placement**: Determine the physical locations of logic blocks.
+   - **Routing**: Establish the connections between the placed blocks.
+5. **Simulation**: Verify the design functionality at various stages (pre-synthesis, post-synthesis, and post-implementation) using simulation tools.
+6. **Configuration**: Program the FPGA with the final design using configuration files.
+7. **Validation and Testing**: Test the programmed FPGA in the real hardware environment to ensure it meets the specified requirements.
+   ![image](https://github.com/user-attachments/assets/0e8f9dcd-a684-4531-8507-9c577859f839)
+
+
+## FPGA Basic Elements
+
+FPGA consists of several fundamental components:
+
+- **Logic Blocks**: The basic computational units, typically comprising lookup tables (LUTs), flip-flops, and multiplexers. They perform the primary logic functions.
+- **Interconnects**: The routing resources that connect the logic blocks. They allow for complex signal routing within the FPGA.
+- **I/O Blocks**: Interfaces that connect the internal FPGA logic to the external pins of the device. They manage input and output signals.
+- **Clock Management**: Components like PLLs (Phase-Locked Loops) and MMCMs (Mixed-Mode Clock Managers) for clock distribution and timing management.
+- **Embedded Memory**: Blocks of memory such as RAM and ROM within the FPGA for data storage and buffering.
+- **DSP Blocks**: Dedicated blocks for digital signal processing tasks, offering efficient implementation of arithmetic operations.
+
+![image](https://github.com/user-attachments/assets/433a6f87-1803-4076-a827-cf78efdb987d)
+
+# LUT Example
+
+A Look-Up Table (LUT) is a fundamental component in digital logic design, particularly in FPGAs (Field-Programmable Gate Arrays). It is used to implement combinational logic functions. The LUT works by mapping input combinations to their corresponding output values based on a pre-defined truth table.
+
+## Understanding LUT with the Provided Example
+
+### Given Logic Function
+The logic function provided is:
+\[ d = (\neg a \land b) \lor c \]
+where `a`, `b`, and `c` are inputs, and `d` is the output.
+
+### Truth Table
+The truth table lists all possible combinations of inputs `a`, `b`, and `c`, and their corresponding output `d` based on the given logic function.
+
+| a | b | c | d |
+|---|---|---|---|
+| 0 | 0 | 0 | 0 |
+| 1 | 0 | 0 | 0 |
+| 0 | 1 | 0 | 1 |
+| 1 | 1 | 0 | 0 |
+| 0 | 0 | 1 | 1 |
+| 1 | 0 | 1 | 1 |
+| 0 | 1 | 1 | 1 |
+| 1 | 1 | 1 | 1 |
+
+### LUT Implementation
+A LUT can be visualized as a table that stores output values for each possible input combination. For a 3-input LUT (as in this example), there are \( 2^3 = 8 \) possible input combinations.
+
+- **Inputs**: The inputs `a`, `b`, and `c` are fed into the LUT.
+- **Output**: The LUT outputs the value `d` based on the combination of inputs.
+
+## How LUT Works
+
+### Inputs Mapping
+- Each combination of inputs `(a, b, c)` is treated as an address to access a specific location in the LUT.
+- For instance, if `a = 0`, `b = 0`, and `c = 0`, this combination points to the first row in the truth table, resulting in `d = 0`.
+
+### Output Determination
+- The LUT stores the output values for each input combination based on the truth table.
+- When a specific combination of inputs is applied to the LUT, it outputs the pre-stored value for that combination.
+
+## Example Walkthrough
+
+- **Input Combination (0, 0, 0)**:
+  - The combination `a = 0`, `b = 0`, `c = 0` corresponds to the first row in the truth table, giving `d = 0`.
+
+- **Input Combination (0, 1, 0)**:
+  - The combination `a = 0`, `b = 1`, `c = 0` corresponds to the third row in the truth table, giving `d = 1`.
+
+- **Input Combination (1, 1, 1)**:
+  - The combination `a = 1`, `b = 1`, `c = 1` corresponds to the last row in the truth table, giving `d = 1`.
+
+![image](https://github.com/user-attachments/assets/eeae876c-3526-4118-b6bb-a26af6fede80)
+
+
+- The diagram on the right shows a LUT with three inputs (`a`, `b`, `c`) and one output (`d`).
+- The truth table on the left provides the mapping of inputs to the corresponding output values.
+- When the inputs are applied to the LUT, it looks up the pre-stored value based on the input combination and produces the output.
+
+# FPGA Architecture: Slices, Configuration Logic Block, and Overall FPGA Structure
+
+This document provides an explanation of key components in FPGA architecture, focusing on slices, configuration logic blocks, and the overall FPGA structure. The images included illustrate these components in the context of Xilinx's 7 Series FPGAs.
+
+## Slices
+
+![image](https://github.com/user-attachments/assets/89ae7b94-8c41-401e-8ad2-91efbea21bbf)
+
+
+A slice is a fundamental building block within an FPGA's Configurable Logic Block (CLB). Each slice contains multiple Look-Up Tables (LUTs), flip-flops, and multiplexers. These elements are used to implement combinational and sequential logic functions.
+
+- **Components of a Slice**:
+  - **LUTs (Look-Up Tables)**: Used for implementing combinational logic.
+  - **Flip-Flops**: Used for storing state information and implementing sequential logic.
+  - **Multiplexers**: Used for routing signals within the slice and to/from the CLB.
+
+The image illustrates the internal structure of a slice, showing how these components are interconnected to form complex logic functions.
+
+## Configuration Logic Block (CLB)
+
+![image](https://github.com/user-attachments/assets/d8f1f495-1cec-4d30-9ba4-ffee76deb141)
+
+
+A CLB is a larger building block within an FPGA that contains multiple slices. The CLB provides the necessary routing and switching logic to connect slices to each other and to other parts of the FPGA.
+
+- **Components of a CLB**:
+  - **Slices**: Each CLB contains multiple slices (usually two in Xilinx FPGAs).
+  - **Switch Matrix**: Facilitates the routing of signals between slices and to/from other CLBs.
+  - **CIN/COUT (Carry In/Carry Out)**: Used for implementing fast carry chains in arithmetic operations.
+
+The image shows the structure of a CLB, highlighting its internal slices and the switch matrix used for routing signals.
+
+## Overall FPGA Architecture
+
+![image](https://github.com/user-attachments/assets/503766f1-6909-464c-8c7a-02347f6af7c6)
+
+
+The overall FPGA architecture consists of an array of CLBs, each containing multiple slices. The CLBs are interconnected by a complex routing matrix, allowing for flexible signal routing and interconnection.
+
+- **Components of FPGA Architecture**:
+  - **CLBs (Configurable Logic Blocks)**: The primary building blocks containing slices.
+  - **Switch Matrix**: Facilitates the routing of signals between CLBs.
+  - **I/O Pads**: Used for interfacing the FPGA with external signals and devices.
+  - **Wires**: Interconnect the CLBs and other components within the FPGA.
+    ![image](https://github.com/user-attachments/assets/208302cc-f576-47a0-be2b-eddbe3b697cf)
+
+
+</details>
 
 ## Capstone Project
 # HUFFMAN ENCODING
   huffman-encoding-core
 ![image](https://github.com/user-attachments/assets/e1074bd7-1a4d-4123-a4dd-7dfb1ef2576f)
 
-![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/ead615e2-0ece-4001-8a89-66fe0264d99e)
 
 ![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/e07e5535-fd47-4664-bf6f-9d3208b19945)
 
