@@ -339,7 +339,7 @@ High-Level Synthesis (HLS) involves two main tasks:
 
 </details>
 
-## Capstone Project
+## WEEK 6-8: Capstone Project
 
 # HUFFMAN ENCODING
 
