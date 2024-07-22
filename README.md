@@ -499,6 +499,13 @@ These modes define different ways to handle data transfer and synchronization be
 
 These configurations demonstrate different levels of complexity and capability for interfacing a design module, from simple direct connections (`ap_none`) to more complex handshaking (`ap_hls`) and standardized bus interfaces (`s_axilite`).
 
+## Combinational Circuits
+
+![image](https://github.com/user-attachments/assets/a6dd79a2-e1d3-47c6-b920-46f4948fa145)
+
+![image](https://github.com/user-attachments/assets/dbd52fa8-e01e-47d7-9b56-dc069899e7c1)
+
+
 </details>
 
 
