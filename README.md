@@ -772,7 +772,7 @@ int main() {
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/yourusername/huffman-encoding.git
+    git clone https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING
     cd huffman-encoding
     ```
 
