@@ -784,37 +784,7 @@ int main() {
 
     Execute the testbench to verify the implementation.
 
-## Example
 
-Here is a brief example of how to use the Canonical Huffman Encoding functions.
-
-```cpp
-#include "huffman.h"
-
-int main() {
-    // Define input frequencies
-    int frequencies[256] = { /* ... */ };
-
-    // Calculate histogram
-    int histogram[256];
-    calculate_histogram(frequencies, histogram);
-
-    // Construct Huffman tree
-    HuffmanTree tree = construct_tree(histogram);
-
-    // Truncate the tree
-    truncate_tree(tree, MAX_CODEWORD_LENGTH);
-
-    // Assign codewords
-    Codeword codewords[256];
-    assign_codewords(tree, codewords);
-
-    // Verify results
-    verify_codewords(codewords, "data/huffman.random256.gold");
-
-    return 0;
-}
-```
 
 ## References
 
