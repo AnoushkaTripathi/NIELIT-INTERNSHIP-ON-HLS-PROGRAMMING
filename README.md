@@ -379,10 +379,128 @@ int add (int a, int *b, int &c) {
 
 ![image](https://github.com/user-attachments/assets/cfc54597-0787-41e6-a24b-99051f978498)
 
+## Hardware Port Examples
+
+![image](https://github.com/user-attachments/assets/f1846ec1-90da-4485-a826-85307a918b93)
+
+- **1 bit data**
+- **8 bit data**
+- **A complex port**
+
+### Types of Ports:
+- **USB port**: Universal Serial Bus port, used for connecting peripherals to the hardware design, providing data transfer and power supply.
+- **DDR memory port**: Double Data Rate memory port, used for connecting to high-speed memory modules, facilitating fast data read/write operations.
+- **Data stream port**: Used for continuous data transmission between the hardware design and external devices or systems, often in real-time applications.
+- **I²C access port**: Inter-Integrated Circuit port, used for communication between low-speed peripherals and the hardware design, typically requiring only two lines (SDA and SCL).
+
+## HLS Design Ports
+
+![image](https://github.com/user-attachments/assets/254d900a-be69-4970-aa97-d77ecbd6a692)
 
 
+```c
+void ledonoff(unsigned char *o) {
+    *o = 0b11111000;
+}
+```
+
+# DAY 3
+
+![image](https://github.com/user-attachments/assets/e85f4ea8-71a8-4ca3-b2c7-24afe469da90)
+
+
+```
+#define data_type unsigned char
+
+void basic_input_output(
+    data_type input
+    data_type *output) {
+    
+    *output = input;
+}
+```
+
+
+
+#### Interface Synthesis
+
+![image](https://github.com/user-attachments/assets/45194563-7ba8-4331-b786-df4f46c9c0b7)
+
+- **Description**: When the top-level function is synthesized, the arguments (or parameters) to the function are synthesized into RTL (Register Transfer Level) ports. This process is called **interface synthesis**.
+- **Illustration**: The diagram shows a top-level function `top-function()` with arguments `p1`, `p2`, and `p3` that are synthesized into ports. This top function calls several other functions (`func1()`, `func2()`, `func3()`, etc.), which are also connected via ports.
+
+#### Port Interfaces
+- **Description**: Port interfaces define how data is transferred between different modules or functions in the FPGA design. The diagram provides an example of a function `basic_input_output()` that uses port interfaces.
+- **Example Code**:
+  ```cpp
+  void basic_input_output(data_type *output) {
+      #pragma HLS INTERFACE ap_none port=output
+      *output = 0b11110000;
+  }
+  ```
+   **Explanation**: The `#pragma HLS INTERFACE` directive specifies the type of interface for the `output` port. In this case, `ap_none` indicates that the port does not use any specific handshaking protocol.
+
+#### List of Interface Modes
+
+  - `ap_ack`
+  - `ap_bus`
+  - `ap_ctrl_hs`
+  - `ap_fifo`
+  - `ap_hs`
+  - `ap_memory`
+  - `ap_none`
+  - `ap_ovld`
+
+These modes define different ways to handle data transfer and synchronization between the modules.
+
+![image](https://github.com/user-attachments/assets/621e40f3-cfe1-433d-b956-ab02e02bc312)
+
+### 1. `ap_none`
+- **Configuration**: Simple data output.
+- **Description**: 
+  - The module has an 8-bit output `o[7:0]` connected directly to the `led[7:0]`.
+  - No handshaking signals are used.
+  - This configuration is the most straightforward and has no control signals.
+
+### 2. `ap_hls`
+- **Configuration**: Data output with HLS protocol signals.
+- **Description**: 
+  - The module has an 8-bit output `o[7:0]` connected to the `led[7:0]` with control signals.
+  - Control signals include:
+    - `ap_ack_0`: Acknowledge signal for the process.
+    - `ap_clk_0`: Clock signal for synchronization.
+    - `ap_rst_0`: Reset signal.
+    - `ap_vld_0`: Valid signal indicating valid data.
+  - These control signals facilitate handshaking, ensuring proper data transfer and synchronization between the module and the connected components.
+
+### 3. `s_axilite`
+- **Configuration**: Data output with AXI-Lite interface.
+- **Description**: 
+  - The module interfaces using the AXI-Lite protocol, suitable for control registers and low-throughput data transfers.
+  - Signals include:
+    - `s_axi_AXILiteS_AWADDR_0[9:0]`: Write address.
+    - `s_axi_AXILiteS_AWVALID_0`: Write address valid.
+    - `s_axi_AXILiteS_AWREADY_0`: Write address ready.
+    - `s_axi_AXILiteS_WDATA_0[31:0]`: Write data.
+    - `s_axi_AXILiteS_WSTRB_0[3:0]`: Write strobes.
+    - `s_axi_AXILiteS_WVALID_0`: Write data valid.
+    - `s_axi_AXILiteS_WREADY_0`: Write data ready.
+    - `s_axi_AXILiteS_BRESP_0[1:0]`: Write response.
+    - `s_axi_AXILiteS_BVALID_0`: Write response valid.
+    - `s_axi_AXILiteS_BREADY_0`: Write response ready.
+    - `s_axi_AXILiteS_ARADDR_0[9:0]`: Read address.
+    - `s_axi_AXILiteS_ARVALID_0`: Read address valid.
+    - `s_axi_AXILiteS_ARREADY_0`: Read address ready.
+    - `s_axi_AXILiteS_RDATA_0[31:0]`: Read data.
+    - `s_axi_AXILiteS_RRESP_0[1:0]`: Read response.
+    - `s_axi_AXILiteS_RVALID_0`: Read data valid.
+    - `s_axi_AXILiteS_RREADY_0`: Read data ready.
+  - This interface allows communication with the module using standard AXI-Lite signals, making it suitable for integration in larger systems with AXI interconnects.
+
+These configurations demonstrate different levels of complexity and capability for interfacing a design module, from simple direct connections (`ap_none`) to more complex handshaking (`ap_hls`) and standardized bus interfaces (`s_axilite`).
 
 </details>
+
 
 <details>
 
