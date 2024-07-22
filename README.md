@@ -505,6 +505,30 @@ These configurations demonstrate different levels of complexity and capability f
 
 ![image](https://github.com/user-attachments/assets/dbd52fa8-e01e-47d7-9b56-dc069899e7c1)
 
+# C/C++ Testbench
+
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/fefdf1ab-71f0-4fed-9d7b-14fe6ec5e7d5)
+
+## Verification 
+
+In this course we will learn simulation based verification
+
+
+![image](https://github.com/AnoushkaTripathi/NIELIT-INTERNSHIP-ON-HLS-PROGRAMMING/assets/98522737/7246fac8-e4fe-4fc1-83a4-e09cffae5e98)
+
+
+![image](https://github.com/user-attachments/assets/b43aab2c-ee14-4985-8fd7-e4568708e75a)
+
+# Flowchart of Design Process
+
+This flowchart outlines the steps involved in computer engineering design. Here’s a brief summary:
+
+- C Test Bench: Create a test environment in the C programming language.
+- Design in C/C++: Perform the actual design work using C or C++.
+- Constraints Directives: Specify design constraints, such as timing requirements.
+- C Synthesis: Synthesize the design into a hardware description language (HDL).
+- RTL Description: Create a Register Transfer Level (RTL) description.
+- Package IP: Package the final design as intellectual property (IP).
 
 </details>
 
