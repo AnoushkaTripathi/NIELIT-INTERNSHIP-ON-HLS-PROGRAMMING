@@ -810,6 +810,7 @@ int main() {
 
     Execute the testbench to verify the implementation.
 
+![image](https://github.com/user-attachments/assets/17cdcde7-083a-47d5-ac71-ed30f0f00dd1)
 
 
 ## References
