@@ -823,6 +823,3 @@ int main() {
 
 
 
-  
-![image](https://github.com/user-attachments/assets/e1074bd7-1a4d-4123-a4dd-7dfb1ef2576f)
-
