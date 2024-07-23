@@ -700,7 +700,24 @@ HuffmanTree construct_tree(const int* histogram) {
 ```
 
 ### Tree Truncation
+
+
 This module truncates the Huffman tree to a maximum codeword length. This step is necessary to ensure that the codewords fit within the desired bit-width.
+
+Detailed Description
+
+
+Tree truncation involves adjusting the Huffman tree to ensure that no codeword exceeds a specified maximum length. This is important for hardware implementations where the bit-width is limited.
+
+Input: A Huffman tree and the maximum allowed codeword length.
+
+
+Output: A truncated Huffman tree.
+
+Steps:
+
+Traverse the Huffman tree to determine the initial lengths of the codewords.
+If any codeword exceeds the maximum length, redistribute the codewords to shorten the longer ones while maintaining the prefix property of Huffman codes.
 
 **Code Snippet:**
 ```cpp
@@ -710,9 +727,23 @@ void truncate_tree(HuffmanTree& tree, int max_length) {
 ```
 
 ### Create Codeword
+This module assigns codewords to each symbol based on the truncated tree. It ensures that the codewords are in canonical form, which simplifies storage and manipulation.
 
-The final step in the encoding process is to create the codeword for each symbol. This process assigns each symbol in order according to the properties of a Canonical Huffman code.
+Detailed Description
 
+
+Canonical Huffman codes assign the shortest codes to the most frequent symbols. The codes are sorted by length, and within each length, the codes are assigned in lexicographic order.
+
+Input: A truncated Huffman tree.
+
+
+Output: An array of codewords for each symbol.
+
+
+Steps:
+
+Calculate the first codeword for each length.
+Assign codewords to symbols based on their lengths, ensuring the codes are in lexicographic order.
 #### Process Description:
 
 1. **First Codeword Calculation:** 
@@ -760,6 +791,29 @@ void create_codeword(
 ### Testbench
 
 The final part of the code is the testbench. It reads the input frequency values from a file, processes them using the Huffman encoding function, and compares the resulting codewords with an existing golden reference stored in a file.
+
+
+Detailed Description
+The testbench verifies the correctness of the Huffman encoding implementation by comparing the output with a precomputed golden reference.
+
+
+Input: A file containing symbol frequencies.
+
+
+Output: A file containing the encoded symbols.
+Steps:
+
+Read the input frequencies from a file.
+
+
+Perform the Huffman encoding process.
+
+
+Write the encoded symbols to an output file.
+
+
+Compare the output file with the golden reference file to verify correctness.
+
 
 **Code Snippet:**
 ```cpp
